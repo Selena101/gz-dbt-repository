@@ -1,0 +1,12 @@
+version:  2
+
+sources:
+    - name:  nth-agent-456108-q2.gz_raw_data
+      tables:
+      - name:  nth-agent-456108-q2.gz_raw_data.raw_gz_product
+        alias:  product
+      - name:  nth-agent-456108-q2.gz_raw_data.raw_gz_sales
+        alias:  sales
+      - name:  nth-agent-456108-q2.gz_raw_data.raw_gz_ship
+        alias:  ship
+
