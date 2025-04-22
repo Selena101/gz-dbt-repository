@@ -1,7 +1,9 @@
 version:  2
 
 sources:
-    - name:  nth-agent-456108-q2.gz_raw_data
+    - name:  raw
+      schema:  nth-agent-456108-q2.gz_raw_data
+      description:  raw data for gz
       tables:
       - name:  nth-agent-456108-q2.gz_raw_data.raw_gz_product
         alias:  product
