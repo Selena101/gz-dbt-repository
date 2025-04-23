@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: <model_name>
+    description: "<Model Description>"
+    columns:
+      - name: <column_name>
+        description: "<Column Description>"
+        tests:
+          - not_null: {}
+          - unique: {}
+          - greater_than:
+              value: <some_value>
