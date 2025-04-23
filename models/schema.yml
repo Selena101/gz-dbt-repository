@@ -43,6 +43,97 @@ sources:
           - name: ship_cost
             description: shipping cost paid by Greenweez to the carrier/logistics provider
 
+      - name: facebook
+        identifier: raw_gz_facebook
+        description: Facebook campaign data
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: date_date
+        columns:
+          - name: date_date
+            description: Date of the Facebook campaign data
+          - name: paid_source
+            description: Source of the paid traffic
+          - name: campaign_key
+            description: Key for the Facebook campaign
+          - name: camPGN_name
+            description: Name of the Facebook campaign
+          - name: ads_cost
+            description: The total cost of the ads in the campaign
+          - name: impression
+            description: Number of impressions in the Facebook campaign
+          - name: click
+            description: Number of clicks in the Facebook campaign
+
+      - name: criteo
+        identifier: raw_gz_criteo
+        description: Criteo campaign data
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: date_date
+        columns:
+          - name: date_date
+            description: Date of the Criteo campaign data
+          - name: paid_source
+            description: Source of the paid traffic
+          - name: campaign_key
+            description: Key for the Criteo campaign
+          - name: camPGN_name
+            description: Name of the Criteo campaign
+          - name: ads_cost
+            description: The total cost of the ads in the campaign
+          - name: impression
+            description: Number of impressions in the Criteo campaign
+          - name: click
+            description: Number of clicks in the Criteo campaign
+
+      - name: bing
+        identifier: raw_gz_bing
+        description: Bing campaign data
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: date_date
+        columns:
+          - name: date_date
+            description: Date of the Bing campaign data
+          - name: paid_source
+            description: Source of the paid traffic
+          - name: campaign_key
+            description: Key for the Bing campaign
+          - name: camPGN_name
+            description: Name of the Bing campaign
+          - name: ads_cost
+            description: The total cost of the ads in the campaign
+          - name: impression
+            description: Number of impressions in the Bing campaign
+          - name: click
+            description: Number of clicks in the Bing campaign
+
+      - name: adwords
+        identifier: aw_gz_adwords
+        description: Adwords campaign data
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: date_date
+        columns:
+          - name: date_date
+            description: Date of the Adwords campaign data
+          - name: paid_source
+            description: Source of the paid traffic
+          - name: campaign_key
+            description: Key for the Adwords campaign
+          - name: camPGN_name
+            description: Name of the Adwords campaign
+          - name: ads_cost
+            description: The total cost of the ads in the campaign
+          - name: impression
+            description: Number of impressions in the Adwords campaign
+          - name: click
+            description: Number of clicks in the Adwords campaign
 models:
   - name: product
     identifier: raw_gz_product
@@ -208,4 +299,3 @@ models:
          description: the cost of preparing the parcel in the distribution centre/warehouse
        - name: ship_cost
          description: shipping cost paid by Greenweez to the carrier/logistics provider
-
