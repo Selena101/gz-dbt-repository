@@ -46,47 +46,99 @@ sources:
 models:
   - name: product
     identifier: raw_gz_product
-    description: products of Greenweez
+    description: Products of Greenweez
     columns:
       - name: products_id
         description: Primary key
         tests:
+          - not_null
           - unique
+      - name: purchase_price
+        description: The purchase price of the product
+        tests:
           - not_null
 
   - name: ship
     identifier: raw_gz_ship
-    description: shipping data for Greenweez orders
+    description: Shipping data for Greenweez orders
     columns:
       - name: orders_id
         description: Primary key
         tests:
+          - not_null
           - unique
+      - name: shipping_fee
+        description: The price the customer pays for shipping
+        tests:
+          - not_null
+      - name: log_cost
+        description: Cost of preparing the parcel in the warehouse
+        tests:
+          - not_null
+      - name: ship_cost
+        description: Shipping cost paid by Greenweez to the carrier
+        tests:
           - not_null
 
   - name: sales
     identifier: raw_gz_sales
-    description: sales of Greenweez
+    description: Sales of Greenweez (one row per product per order)
     columns:
       - name: orders_id
-        description: foreign key to ship
+        description: Foreign key to ship
         tests:
           - not_null
       - name: pdt_id
-        description: foreign key to product
+        description: Foreign key to product
         tests:
           - not_null
       - name: quantity
-        description: the quantity of products purchased for a given order
+        description: The quantity of products purchased for a given order
+        tests:
+          - not_null
       - name: date_date
-        description: date of purchase
+        description: Date of purchase
         tests:
           - not_null
       - name: revenue
-        description: revenue = quantity * selling_price
-      - name: composite_key
-        description: Uniqueness of (orders_id, pdt_id)
+        description: Revenue = quantity * selling_price
         tests:
-          - unique:
-              config:
-                where: "orders_id IS NOT NULL AND pdt_id IS NOT NULL"
+          - not_null
+    tests:
+      - unique:
+          column_name: "CAST(orders_id AS TEXT) || '-' || CAST(pdt_id AS TEXT)"
+  
+  - name: int_sales_margin
+    description: margin calculation per order
+    columns:
+      - name: orders_id
+        description: orders key
+        tests:
+          - not_null
+      - name: products_id
+        description: products key
+        tests:
+          - not_null
+      - name: margin
+        description: Margin = Revenue - Purchase_cost
+        tests:
+          - not_null
+      - name: Purchase_cost
+        description: Purchase_cost = Quantity * Purchase_price
+        tests:
+          - not_null
+      - name: date_date
+        description: date of the order
+        tests:
+          - not_null
+      - name: revenue
+        description: sum of revenue per order
+        tests:
+          - not_null
+      - name: quantity
+        description: sum of quantity per order
+        tests:
+          - not_null
+    tests:
+      - unique:
+          column_name: "(orders_id || '-' || products_id)"
